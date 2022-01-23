@@ -1,10 +1,10 @@
 # py-archive
-A cli tool to easily store and retrieve data in a tree-like data structure. It is designed to work with dmenu
+A cli tool to easily store and retrieve data in a tree-like data structure. It is designed to work with dmenu.
 
 ## Requirements
 - a copy/paste mechanism to be used by [pyperclip](https://pypi.org/project/pyperclip/
 ) library. For Ubuntu, use `xsel`, do not use `xclip` (https://github.com/asweigart/pyperclip/issues/116)
-- [dmenu](https://tools.suckless.org/dmenu/)
+- [dmenu](https://tools.suckless.org/dmenu/). For mac users, use [dmenu-mac](https://github.com/oNaiPs/dmenu-mac) but make sure to alias it to dmenu before executing the script (`alias dmenu='dmenu-mac'`).
 
 ## TODO
 - implement py-archive-add
