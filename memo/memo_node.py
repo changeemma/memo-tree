@@ -6,7 +6,7 @@ class MemoNode(MemoBase):
         super().__init__(name)
         self.nodes = []
 
-    def add_node(self, node):
+    def add_node(self, node: MemoBase) -> None:
         self.nodes.append(node)
 
     def browse(self, name: str) -> MemoBase:
@@ -15,5 +15,6 @@ class MemoNode(MemoBase):
                 return node
         raise KeyError
 
-    def open(self):
-        print('\n'.join([str(n) for n in self.nodes]))
+    def open(self) -> None:
+        nodes = '\n'.join(n.print() for n in self.nodes)
+        print(nodes)
