@@ -14,6 +14,10 @@ class MemoBase(ABC):
         return self.name == name
 
     @abstractmethod
+    def has_node(self, name: str) -> bool:
+        pass
+
+    @abstractmethod
     def browse(self, name) -> MemoBase:
         pass
 

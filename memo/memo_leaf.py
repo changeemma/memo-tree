@@ -11,5 +11,8 @@ class MemoLeaf(MemoBase):
     def browse(self, name) -> MemoBase:
         raise KeyError
 
+    def has_node(self, name: str) -> bool:
+        return False
+
     def open(self) -> None:
         pyperclip.copy(self.content)

@@ -5,27 +5,36 @@ from memo import MemoLeaf, MemoNode
 
 def main(path):
     # build memo tree
-    reddit_node = MemoNode("reddit")
-    reddit_node.add_node(MemoLeaf("naerokeht", "redditpass"))
+    memo_tree = build_memo_tree("memo_file.csv")
 
-    github_node = MemoNode("github")
-    github_node.add_node(MemoLeaf("changeemma", "githubpass"))
-
-    gmail_node = MemoNode("gmail")
-    gmail_node.add_node(MemoLeaf("changeemma@gmail.com", "gmpass1"))
-    gmail_node.add_node(MemoLeaf("echang.dev@gmail.com", "gmpass2"))
-
-    archive = MemoNode("memo")
-    archive.add_node(reddit_node)
-    archive.add_node(github_node)
-    archive.add_node(gmail_node)
-
-    # traverse memo
+    # traverse tree
     for p in path:
-        archive = archive.browse(p)
+        memo_tree = memo_tree.browse(p)
 
     # open memo
-    archive.open()
+    memo_tree.open()
+
+
+def build_memo_tree(csv_file: str):
+    with open(csv_file) as f:
+        content = f.read().splitlines()
+
+    root = MemoNode("memo")
+
+    for line in content:
+        path = line.split(',')
+        content = path.pop()
+        name = path.pop()
+        leaf = MemoLeaf(name, content)
+
+        node = root
+        for p in path:
+            if node.has_node(p) is False:
+                node.add_node(MemoNode(p))
+            node = node.browse(p)
+        node.add_node(leaf)
+
+    return root
 
 
 if __name__ == '__main__':
