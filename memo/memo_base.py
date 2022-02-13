@@ -7,7 +7,7 @@ class MemoBase(ABC):
     def __init__(self, name: str):
         self.name = name
 
-    def __str__(self) -> str:
+    def print(self) -> str:
         return self.name
 
     def is_named(self, name: str) -> bool:
