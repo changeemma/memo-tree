@@ -1,30 +1,30 @@
 import argparse
 
-from archive import ArchiveLeaf, ArchiveNode
+from memo import MemoLeaf, MemoNode
 
 
 def main(path):
-    # build archive tree
-    reddit_node = ArchiveNode("reddit")
-    reddit_node.add_node(ArchiveLeaf("naerokeht", "redditpass"))
+    # build memo tree
+    reddit_node = MemoNode("reddit")
+    reddit_node.add_node(MemoLeaf("naerokeht", "redditpass"))
 
-    github_node = ArchiveNode("github")
-    github_node.add_node(ArchiveLeaf("changeemma", "githubpass"))
+    github_node = MemoNode("github")
+    github_node.add_node(MemoLeaf("changeemma", "githubpass"))
 
-    gmail_node = ArchiveNode("gmail")
-    gmail_node.add_node(ArchiveLeaf("changeemma@gmail.com", "gmpass1"))
-    gmail_node.add_node(ArchiveLeaf("echang.dev@gmail.com", "gmpass2"))
+    gmail_node = MemoNode("gmail")
+    gmail_node.add_node(MemoLeaf("changeemma@gmail.com", "gmpass1"))
+    gmail_node.add_node(MemoLeaf("echang.dev@gmail.com", "gmpass2"))
 
-    archive = ArchiveNode("archive")
+    archive = MemoNode("memo")
     archive.add_node(reddit_node)
     archive.add_node(github_node)
     archive.add_node(gmail_node)
 
-    # traverse archive
+    # traverse memo
     for p in path:
         archive = archive.browse(p)
 
-    # open archive
+    # open memo
     archive.open()
 
 

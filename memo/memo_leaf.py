@@ -1,14 +1,14 @@
 import pyperclip
 
-from .archive_base import ArchiveBase
+from .memo_base import MemoBase
 
 
-class ArchiveLeaf(ArchiveBase):
+class MemoLeaf(MemoBase):
     def __init__(self, name: str, content: str):
         super().__init__(name)
         self.content = content
 
-    def browse(self, name) -> ArchiveBase:
+    def browse(self, name) -> MemoBase:
         raise KeyError
 
     def open(self) -> None:
