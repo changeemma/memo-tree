@@ -1,11 +1,12 @@
 import argparse
+from typing import List
 
 from memo import MemoLeaf, MemoNode
 
 
-def main(path):
+def main(path: List, file: str = ""):
     # build memo tree
-    memo_tree = build_memo_tree("memo_file.csv")
+    memo_tree = build_memo_tree(file)
 
     # traverse tree
     for p in path:
@@ -15,8 +16,8 @@ def main(path):
     memo_tree.open()
 
 
-def build_memo_tree(csv_file: str):
-    with open(csv_file) as f:
+def build_memo_tree(file: str):
+    with open(file) as f:
         content = f.read().splitlines()
 
     root = MemoNode("memo")
@@ -43,6 +44,9 @@ if __name__ == '__main__':
                         metavar='node',
                         type=str,
                         nargs='*',
-                        help='this is help')
+                        help='Path of nodes.')
+    parser.add_argument('-f', '--file',
+                        type=str,
+                        help="CSV dump file.")
     args = parser.parse_args()
-    main(args.path)
+    main(args.path, args.file)
